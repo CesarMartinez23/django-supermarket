@@ -1,0 +1,21 @@
+<nav class="bg-blue-100 px-2 sm:px-4 py-2.5 rounded">
+    <div class="">
+      <div class="flex justify-between h-16 px-10 shadow items-center">
+        <div class="flex items-center space-x-8">
+          <a href="{% url 'home' %}" aria-label="Go home" title="Company" class="inline-flex items-center">
+            <img src="https://cdn.worldvectorlogo.com/logos/jumbo-supermarket.svg" class="mr-3 h-6 sm:h-9" alt="Logo">
+          {% comment %} <h1 class="text-xl lg:text-2xl font-bold cursor-pointer">Jumbo Market</h1> {% endcomment %}
+          <div class="hidden md:flex justify-around space-x-4">
+            <a href="{% url 'home' %}" class="hover:text-indigo-600 text-gray-700">Home</a>
+            <a href="{% url 'products' %}" class="hover:text-indigo-600 text-gray-700">Products</a>
+            <a href="{% url 'about' %}" class="hover:text-indigo-600 text-gray-700">About</a>
+            <a href="{% url 'contact' %}" class="hover:text-indigo-600 text-gray-700">Contact</a>
+          </div>
+        </div>
+        <div class="flex space-x-4 items-center">
+          <a href="{% url 'login' %}" class="text-gray-800 text-sm">LOGIN</a>
+          <a href="{% url 'register' %}" class="bg-indigo-600 px-4 py-2 rounded text-white hover:bg-indigo-500 text-sm">SIGNUP</a>
+        </div>
+      </div>
+    </div>
+  </nav>
