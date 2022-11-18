@@ -1,3 +1,4 @@
+
 {% extends 'index.html' %}
 
 {% block content %}
@@ -24,93 +25,33 @@
             </tr>
         </thead>
         <tbody>
+            {% comment %} Start Card Product {% endcomment %}
+            {% for product in products %}
             <tr class="bg-white border-b hover:bg-gray-50">
                 <td class="p-4 w-32">
-                    <img src="https://cdn.pixabay.com/photo/2017/06/01/00/53/apple-2362149_960_720.jpg" alt="Apple Watch">
+                    {% comment %} ! Aqui {% endcomment %}
+                    <img src="{{ product.imagen.url }}" alt="img: {{product.nombre}}">
                 </td>
                 <td class="py-4 px-6 font-semibold text-gray-900">
-                    Apple Watch
+                    {{product.nombre}}
                 </td>
                 <td class="py-4 px-6">
                     <div class="flex items-center space-x-3">
-                        <button class="inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white rounded-full border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200" type="button">
-                            <span class="sr-only">Quantity button</span>
-                            <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-                        </button>
                         <div>
                             <input type="number" id="first_product" class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1" placeholder="1" required="">
                         </div>
-                        <button class="inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white rounded-full border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200" type="button">
-                            <span class="sr-only">Quantity button</span>
-                            <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
-                        </button>
                     </div>
                 </td>
                 <td class="py-4 px-6 font-semibold text-gray-900">
-                    $599
+                    $ {{product.precio}}
                 </td>
                 <td class="py-4 px-6">
-                    <a href="#" class="font-medium text-red-600 hover:underline">Remove</a>
+                    <a href="#" class="font-medium text-white hover:underline bg-yellow-600">Edit</a>
+                    <a href="#" class="font-medium text-white hover:underline bg-red-600">Remove</a>
                 </td>
             </tr>
-            <tr class="bg-white border-b hover:bg-gray-50">
-                <td class="p-4 w-32">
-                    <img src="https://cdn.pixabay.com/photo/2017/06/01/00/53/apple-2362149_960_720.jpg" alt="Apple Imac">
-                </td>
-                <td class="py-4 px-6 font-semibold text-gray-900">
-                    Imac 27"
-                </td>
-                <td class="py-4 px-6">
-                    <div class="flex items-center space-x-3">
-                        <button class="inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white rounded-full border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200" type="button">
-                            <span class="sr-only">Quantity button</span>
-                            <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-                        </button>
-                        <div>
-                            <input type="number" id="second_product" class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1" placeholder="1" required="">
-                        </div>
-                        <button class="inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white rounded-full border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200" type="button">
-                            <span class="sr-only">Quantity button</span>
-                            <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
-                        </button>
-                    </div>
-                </td>
-                <td class="py-4 px-6 font-semibold text-gray-900">
-                    $2499
-                </td>
-                <td class="py-4 px-6">
-                    <a href="#" class="font-medium text-red-600 hover:underline">Remove</a>
-                </td>
-            </tr>
-            <tr class="bg-white border-b hover:bg-gray-50">
-                <td class="p-4 w-32">
-                    <img src="https://cdn.pixabay.com/photo/2017/06/01/00/53/apple-2362149_960_720.jpg" alt="Iphone 12">
-                </td>
-                <td class="py-4 px-6 font-semibold text-gray-900">
-                    Iphone 12 
-                </td>
-                <td class="py-4 px-6">
-                    <div class="flex items-center space-x-3">
-                        <button class="inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white rounded-full border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200" type="button">
-                            <span class="sr-only">Quantity button</span>
-                            <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-                        </button>
-                        <div>
-                            <input type="number" id="third_product" class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1" placeholder="1" required="">
-                        </div>
-                        <button class="inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white rounded-full border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200" type="button">
-                            <span class="sr-only">Quantity button</span>
-                            <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
-                        </button>
-                    </div>
-                </td>
-                <td class="py-4 px-6 font-semibold text-gray-900">
-                    $999
-                </td>
-                <td class="py-4 px-6">
-                    <a href="#" class="font-medium text-red-600 hover:underline">Remove</a>
-                </td>
-            </tr>
+            {% endfor %}
+            {% comment %} End Card Product {% endcomment %}
         </tbody>
     </table>
 </div>

@@ -8,12 +8,11 @@ class Categoria(models.Model):
     def __str__(self):
         return self.nombre
 
-class Proveedor(models.Model):
+class Proveedore(models.Model):
     nombre = models.CharField(max_length=50)
-    apellido = models.CharField(max_length=50)
     telefono = models.CharField(max_length=50)
     direccion = models.TextField()
-    email = models.CharField(max_length=50)
+    email = models.EmailField()
     fecha_registro = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -22,11 +21,11 @@ class Proveedor(models.Model):
 class Producto(models.Model):
     nombre = models.CharField(max_length=50)
     cantidad = models.IntegerField()
-    precio = models.IntegerField()
+    precio = models.FloatField()
     descripcion = models.TextField()
-    imagen = models.ImageField(upload_to='productos')
+    imagen = models.ImageField(upload_to='imgProductos/',null=True, blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
-    proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE)
+    proveedor = models.ForeignKey(Proveedore, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nombre
