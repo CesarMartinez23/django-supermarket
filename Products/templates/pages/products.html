@@ -1,59 +1,73 @@
 
 {% extends 'index.html' %}
 
+{% block title %}Products{% endblock title %}
+
 {% block content %}
     
-<div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-            <tr>
-                <th scope="col" class="py-3 px-6">
-                    <span class="sr-only">Image</span>
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Product
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Quantity
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Price
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Action
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% comment %} Start Card Product {% endcomment %}
-            {% for product in products %}
-            <tr class="bg-white border-b hover:bg-gray-50">
-                <td class="p-4 w-32">
-                    {% comment %} ! Aqui {% endcomment %}
-                    <img src="{{ product.imagen.url }}" alt="img: {{product.nombre}}">
-                </td>
-                <td class="py-4 px-6 font-semibold text-gray-900">
-                    {{product.nombre}}
-                </td>
-                <td class="py-4 px-6">
-                    <div class="flex items-center space-x-3">
-                        <div>
-                            <input type="number" id="first_product" class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1" placeholder="1" required="">
+<div class="container">
+    <div class="container"><a href="{% url 'new_product' %}" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"><i class="bi bi-plus"></i> Add Product</a>
+    </div>
+    
+    <br/>
+
+    <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="py-3 px-5">
+                        N°
+                    </th>
+                    <th scope="col" class="py-3 px-5">
+                        Image
+                    </th>
+                    <th scope="col" class="py-3 px-5">
+                        Product
+                    </th>
+                    <th scope="col" class="py-3 px-3">
+                        Quantity
+                    </th>
+                    <th scope="col" class="py-3 px-3">
+                        Price
+                    </th>
+                    <th scope="col" class="py-3 px-5">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% comment %} Start Card Product {% endcomment %}
+                {% for product in products %}
+                <tr class="bg-white border-b hover:bg-gray-50">
+                    <td class="p-4 w-10">
+                        {{ product.id}}
+                    </td>
+                    <td class="p-4 w-32">
+                        <img src="{{ product.imagen.url }}" alt="img: {{product.nombre}}">
+                    </td>
+                    <td class="py-4 px-5 font-semibold text-gray-900">
+                        {{product.nombre}}
+                    </td>
+                    <td class="py-4 px-3">
+                        <div class="flex items-center space-x-3">
+                            <div>
+                                <input type="number" id="first_product" class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1" placeholder="1" required="">
+                            </div>
                         </div>
-                    </div>
-                </td>
-                <td class="py-4 px-6 font-semibold text-gray-900">
-                    $ {{product.precio}}
-                </td>
-                <td class="py-4 px-6">
-                    <a href="#" class="font-medium text-white hover:underline bg-yellow-600">Edit</a>
-                    <a href="#" class="font-medium text-white hover:underline bg-red-600">Remove</a>
-                </td>
-            </tr>
-            {% endfor %}
-            {% comment %} End Card Product {% endcomment %}
-        </tbody>
-    </table>
+                    </td>
+                    <td class="py-4 px-3 font-semibold text-gray-900">
+                        $ {{product.precio}}
+                    </td>
+                    <td class="py-4 px-2">
+                        <a href="#" class="font-medium text-white btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                        <a href="#" class="font-medium text-white btn btn-danger"><i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% comment %} End Card Product {% endcomment %}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 {% endblock content %}

@@ -10,4 +10,5 @@ urlpatterns = [
     path('contact/', views.contact, name="contact"),
     path('login/', views.login, name="login"),
     path('register/', views.register, name="register"),
+    path('new_product/', views.new_product, name="new_product"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
