@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    Update Product
+{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <div class="mb-3">
+            <label for="id_nombre" class="form-label">Nombre:</label>
+            <input type="text" name="nombre" class="form-control" required id="id_nombre" placeholder="Product Name" value="{{ producto.nombre }}">
+        </div>
+        <div class="mb-3">
+            <label for="id_cantidad" class="form-label">Cantidad</label>
+            <input type="number" name="cantidad" class="form-control" min="1" required id="id_cantidad" placeholder="0" value="{{ producto.cantidad }}">
+        </div>
+        <div class="mb-3">
+            <label for="id_precio" class="form-label">Precio</label>
+            <input step="0.01" type="number" name="precio" class="form-control" min="0.00" required id="id_precio" placeholder="0.00" value="{{ producto.precio }}">
+        </div>
+        <div class="mb-3">
+            <label for="id_descripcion" class="form-label">Descripcion</label>
+            {% comment %} Textarea no tiene tag (value) {% endcomment %}
+            <textarea class="form-control" name="descripcion" required id="id_descripcion" rows="3">{{ producto.descripcion }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="id_imagen" class="form-label">Imagen</label>
+            <img class="pl-2 py-2 w-32" src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+            {% comment %} No tiene tag (value) condicional en la view {% endcomment %}
+            <input class="form-control" type="file" name="imagen" accept="image/*" id="id_imagen">
+          </div>
+        <div class="mb-3">
+            <label for="id_categoria" class="form-label">Categoria</label>
+            <select class="form-select" name="categoria" required id="id_categoria">
+                <option selected value="{{ producto.categoria.id }}">{{ producto.categoria.nombre }}</option>
+                {% for categoria in categorias %}
+                    <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
+                {% endfor %}
+              </select>
+          </div>
+        <div class="mb-3">
+            <label for="id_proveedor" class="form-label">Proveedor</label>
+            <select class="form-select" name="proveedor" required id="id_proveedor">
+                <option selected value="{{ producto.proveedor.id }}">{{ producto.proveedor.nombre }}</option>
+                {% for proveedor in proveedores %}
+                    <option value="{{ proveedor.id }}">{{ proveedor.nombre }}</option>
+                {% endfor %}
+              </select>
+          </div>
+          <div class="d-grid gap-2">
+            <button type="submit" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Update</button>
+          </div>
+        </form>
+    </div>
+{% endblock content %}

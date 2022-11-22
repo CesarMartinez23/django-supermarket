@@ -43,10 +43,10 @@
                         {{ product.id}}
                     </td>
                     <td class="p-4 w-32">
-                        <img src="{{ product.imagen.url }}" alt="img: {{product.nombre}}">
+                        <img src="{{ product.imagen.url }}" alt="img: {{ product.nombre }}">
                     </td>
                     <td class="py-4 px-5 font-semibold text-gray-900">
-                        {{product.nombre}}
+                        {{ product.nombre }}
                     </td>
                     <td class="py-4 px-3">
                         <div class="flex items-center space-x-3">
@@ -59,8 +59,10 @@
                         $ {{product.precio}}
                     </td>
                     <td class="py-4 px-2">
-                        <a href="#" class="font-medium text-white btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                        <a href="#" class="font-medium text-white btn btn-danger"><i class="bi bi-trash"></i></a>
+                        {% comment %} Update {% endcomment %}
+                        <a href="{% url 'update_product' product.id %}" class="font-medium text-white btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                        {% comment %} Delete {% endcomment %}
+                        <a href="{% url 'delete_product' product.id %}" class="font-medium text-white btn btn-danger"><i class="bi bi-trash"></i></a>
                     </td>
                 </tr>
                 {% endfor %}
