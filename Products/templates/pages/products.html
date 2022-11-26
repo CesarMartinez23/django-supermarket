@@ -6,8 +6,10 @@
 {% block content %}
     
 <div class="container">
+    {% if user.is_authenticated %}
     <div class="container"><a href="{% url 'new_product' %}" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"><i class="bi bi-plus"></i> Add Product</a>
     </div>
+    {% endif %}
     
     <br/>
 
@@ -30,9 +32,11 @@
                     <th scope="col" class="py-3 px-3">
                         Price
                     </th>
-                    <th scope="col" class="py-3 px-5">
-                        Action
-                    </th>
+                    {% if user.is_authenticated %}
+                        <th scope="col" class="py-3 px-5">
+                            Action
+                        </th>
+                    {% endif %}
                 </tr>
             </thead>
             <tbody>
@@ -40,7 +44,7 @@
                 {% for product in products %}
                 <tr class="bg-white border-b hover:bg-gray-50">
                     <td class="p-4 w-10">
-                        {{ product.id}}
+                        {{ forloop.counter }}
                     </td>
                     <td class="p-4 w-32">
                         <img src="{{ product.imagen.url }}" alt="img: {{ product.nombre }}">
@@ -51,19 +55,21 @@
                     <td class="py-4 px-3">
                         <div class="flex items-center space-x-3">
                             <div>
-                                <input type="number" id="first_product" class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1" placeholder="1" required="">
+                                <input type="number" id="first_product" min="1" class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1" placeholder="1" required="">
                             </div>
                         </div>
                     </td>
                     <td class="py-4 px-3 font-semibold text-gray-900">
                         $ {{product.precio}}
                     </td>
-                    <td class="py-4 px-2">
-                        {% comment %} Update {% endcomment %}
-                        <a href="{% url 'update_product' product.id %}" class="font-medium text-white btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                        {% comment %} Delete {% endcomment %}
-                        <a href="{% url 'delete_product' product.id %}" class="font-medium text-white btn btn-danger"><i class="bi bi-trash"></i></a>
-                    </td>
+                    {% if user.is_authenticated %}
+                        <td class="py-4 px-2">
+                            {% comment %} Update {% endcomment %}
+                            <a href="{% url 'update_product' product.id %}" class="font-medium text-white btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                            {% comment %} Delete {% endcomment %}
+                            <a href="{% url 'delete_product' product.id %}" class="font-medium text-white btn btn-danger"><i class="bi bi-trash"></i></a>
+                        </td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
                 {% comment %} End Card Product {% endcomment %}

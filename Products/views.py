@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Producto, Categoria, Proveedore
 from .forms import ProductoForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -18,11 +20,31 @@ def products(request):
 def contact(request):
     return render(request, 'pages/contact.html')
 
-def login(request):
+def signin(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('products')
     return render(request, 'pages/login.html')
 
 def register(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        
+        user = User.objects.create_user(username, email, password)
+        user.save()
+        login(request, user)
+        return redirect('products')
     return render(request, 'pages/register.html')
+
+def close_session(request):
+    logout(request)
+    return redirect('home')
 
 def new_product(request):
     new_product = ProductoForm()
