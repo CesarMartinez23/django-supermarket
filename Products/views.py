@@ -3,6 +3,7 @@ from .models import Producto, Categoria, Proveedore
 from .forms import ProductoForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -42,10 +43,12 @@ def register(request):
         return redirect('products')
     return render(request, 'pages/register.html')
 
+@login_required(login_url='login')
 def close_session(request):
     logout(request)
     return redirect('home')
 
+@login_required(login_url='login')
 def new_product(request):
     new_product = ProductoForm()
     catgeorias = Categoria.objects.all()
@@ -71,6 +74,7 @@ def new_product(request):
         'form': new_product
     })
 
+@login_required(login_url='login')
 def update_product(request, id):
     producto = Producto.objects.get(id=id)
     catgeorias = Categoria.objects.all()
@@ -93,7 +97,7 @@ def update_product(request, id):
         'proveedores': proveedores,
     })
 
-
+@login_required(login_url='login')
 def delete_product(request, id):
     producto = Producto.objects.get(id=id)
     producto.delete()
