@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    Providers
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="container"><a href="{% url 'new_provider' %}" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"><i class="bi bi-plus"></i> Add Provider</a>
+    </div>
+<br/>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">N°</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Direccion</th>
+        <th scope="col">Email</th>
+        <th scope="col">Registro</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for provider in providers %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ provider.nombre }}</td>
+        <td>{{ provider.telefono }}</td>
+        <td>{{ provider.direccion }}</td>
+        <td>{{ provider.email }}</td>
+        <td>{{ provider.fecha_registro }}</td>
+            <td scope="row">
+                <a href="{% url 'update_provider' provider.id %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'delete_provider' provider.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+      </tr>
+      {% endfor %}
+    </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock content %}
